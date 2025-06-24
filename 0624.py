@@ -66,7 +66,7 @@ Neutrophil_to_Lymphocyte_Ratio = st.number_input(
     max_value=20.0,      # 允许最大值是 20.0（浮点数）
     value=5.0,           # 默认值改为 5.0（浮点数）
     step=0.1,            # 允许以 0.1 为步长调整（如 2.3、3.5）
-    format="%.1f"        # 格式化显示 1 位小数（可选）
+    format="%.2f"        # 格式化显示 1 位小数（可选）
 )
 # Total_Cholesterol
 Total_Cholesterol = st.number_input(
@@ -75,7 +75,7 @@ Total_Cholesterol = st.number_input(
     max_value=300.0,      # 允许最大值 300.0（浮点数）
     value=150.0,          # 默认值改为 150.0（浮点数）
     step=0.1,             # 允许以 0.1 为步长调整（如 5.2、6.7）
-    format="%.1f"         # 格式化显示 1 位小数（可选）
+    format="%.2f"         # 格式化显示 1 位小数（可选）
 )
 # Education_Level
 Education_Level = st.selectbox("Education Level:", options=list(Education_Level_options.keys()), format_func=lambda x: Education_Level_options[x])

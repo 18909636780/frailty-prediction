@@ -13,22 +13,22 @@ scaler = joblib.load('scaler_frailty0120.pkl')
 
 # Define feature options
 Cognitive_Status_options = {
-    0: 'Normal(0)',
-    1: 'Mild(1)',
-    2: 'Moderate(2)',
-    3: 'Severe(3)',
+    0: 'Normal',
+    1: 'Mild',
+    2: 'Moderate',
+    3: 'Severe',
 }
 
 Vegetable_Intake_options = {
-    0: '＜300(0)',
-    1: '300-500(1)',
-    2: '＞500(2)',  
+    0: '＜300',
+    1: '300-500',
+    2: '＞500',  
 }
 
 Education_Level_options = {
-    0: 'Below junior high school(0)',
-    1: 'Senior high school(1)',
-    2: 'College or above(2)',
+    0: 'Below junior high school',
+    1: 'Senior high school',
+    2: 'College or above',
 }
 
 # Define feature names
@@ -53,14 +53,30 @@ Number_of_Medicine = st.selectbox("Number of Medicine:", options=[0, 1], format_
 Number_of_Diseases = st.number_input("Number of Diseases:", min_value=0, max_value=10, value=0)
 
 # Hemoglobin
-Hemoglobin = st.number_input("Hemoglobin(g/L):", min_value=0, max_value=200, value=100)  
+Hemoglobin = st.number_input("Hemoglobin(g/L):", 
+                            min_value=0.0,  # 改为浮点数
+                            max_value=200.0,  # 改为浮点数
+                            value=100.0,  # 改为浮点数
+                            step=0.1)  # 允许以0.1为步长调整  
 
 # Neutrophil_to_Lymphocyte_Ratio
-Neutrophil_to_Lymphocyte_Ratio = st.number_input("Neutrophil to Lymphocyte Ratio:", min_value=0, max_value=20, value=5)
-
+Neutrophil_to_Lymphocyte_Ratio = st.number_input(
+    "Neutrophil to Lymphocyte Ratio:", 
+    min_value=0.0,      # 允许最小值是 0.0（浮点数）
+    max_value=20.0,      # 允许最大值是 20.0（浮点数）
+    value=5.0,           # 默认值改为 5.0（浮点数）
+    step=0.1,            # 允许以 0.1 为步长调整（如 2.3、3.5）
+    format="%.1f"        # 格式化显示 1 位小数（可选）
+)
 # Total_Cholesterol
-Total_Cholesterol= st.number_input("Total Cholesterol(mmol/L):", min_value=0, max_value=300, value=150)
-
+Total_Cholesterol = st.number_input(
+    "Total Cholesterol (mmol/L):", 
+    min_value=0.0,        # 允许最小值 0.0（浮点数）
+    max_value=300.0,      # 允许最大值 300.0（浮点数）
+    value=150.0,          # 默认值改为 150.0（浮点数）
+    step=0.1,             # 允许以 0.1 为步长调整（如 5.2、6.7）
+    format="%.1f"         # 格式化显示 1 位小数（可选）
+)
 # Education_Level
 Education_Level = st.selectbox("Education Level:", options=list(Education_Level_options.keys()), format_func=lambda x: Education_Level_options[x])
 

@@ -108,30 +108,6 @@ if st.button("Predict"):
     st.write(f"**Low Exposure Probability:** {prob_class1:.1%}")
     st.write(f"**Decision Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
     st.write(f"**Predicted Class:** {predicted_class} (1: High risk, 0: Low risk)")
-#if st.button("Predict"):   
-    # Predict class and probabilities    
-    #predicted_class = model.predict(final_features_df)[0]   
-    #predicted_proba = model.predict_proba(final_features_df)[0]
-
-    # Display prediction results    
-    #st.write(f"**Predicted Class:** {predicted_class}(0: No Disease,1: Disease)")   
-    #st.write(f"**Prediction Probabilities:** {predicted_proba}")
-
-    # Generate advice based on prediction results  
-    #probability = predicted_proba[predicted_class] * 100
-    #if predicted_class == 1:        
-        # advice = (            
-                #f"According to our model, you have a high risk of frailty. "            
-                #f"The model predicts that your probability of having frailty is {probability:.1f}%. "            
-                #"It's advised to consult with your healthcare provider for further evaluation and possible intervention."        
-          )    
-    #else:        
-        # advice = (           
-                #f"According to our model, you have a low risk of frailty. "            
-                #f"The model predicts that your probability of not having frailty is {probability:.1f}%. "            
-                #"However, maintaining a healthy lifestyle is important. Please continue regular check-ups with your healthcare provider."        
-          )    
-    #st.write(advice)
 
 # SHAP 解释
 st.subheader("SHAP Waterfall Plot Explanation")

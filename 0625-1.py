@@ -7,9 +7,6 @@ import shap
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
-# 配置页面
-st.set_page_config(page_title="Frailty Risk Calculator", layout="wide")
-
 # 常量定义
 OPTIMAL_THRESHOLD = 0.338
 model = joblib.load('CatBoost_frailty0120.pkl')

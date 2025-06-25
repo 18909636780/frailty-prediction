@@ -63,10 +63,24 @@ Hemoglobin = st.number_input("Hemoglobin(g/L):",
                             step=0.1)  # 允许以0.1为步长调整  
 
 # Total_Cholesterol
-Total_Cholesterol= st.number_input("Total Cholesterol(mmol/L):", min_value=0, max_value=300, value=150)
+Total_Cholesterol = st.number_input(
+    "Total Cholesterol (mmol/L):", 
+    min_value=0.0,        # 允许最小值 0.0（浮点数）
+    max_value=20.0,      # 允许最大值 300.0（浮点数）
+    value=5.0,          # 默认值改为 150.0（浮点数）
+    step=0.1,             # 允许以 0.1 为步长调整（如 5.2、6.7）
+    format="%.2f"         # 格式化显示 1 位小数（可选）
+)
 
 # Neutrophil_to_Lymphocyte_Ratio
-Neutrophil_to_Lymphocyte_Ratio = st.number_input("Neutrophil to Lymphocyte Ratio:", min_value=0, max_value=20, value=5)
+Neutrophil_to_Lymphocyte_Ratio = st.number_input(
+    "Neutrophil to Lymphocyte Ratio:", 
+    min_value=0.0,      # 允许最小值是 0.0（浮点数）
+    max_value=20.0,      # 允许最大值是 20.0（浮点数）
+    value=5.0,           # 默认值改为 5.0（浮点数）
+    step=0.1,            # 允许以 0.1 为步长调整（如 2.3、3.5）
+    format="%.2f"        # 格式化显示 1 位小数（可选）
+)
 
 # 准备输入特征
 feature_values = [Education_Level,Number_of_Diseases, Number_of_Medicine,Vegetable_Intake,Cognitive_Status,Age, Hemoglobin, Total_Cholesterol,Neutrophil_to_Lymphocyte_Ratio]

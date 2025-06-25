@@ -56,10 +56,11 @@ Cognitive_Status = st.selectbox("Cognitive Status:", options=list(Cognitive_Stat
 Age = st.number_input("Age:", min_value=0, max_value=120, value=65)
 
 # Hemoglobin
-Hemoglobin = st.number_input("Hemoglobin(g/L):", min_value=0, max_value=200, value=100)
-
-# Hemoglobin
-Hemoglobin = st.number_input("Hemoglobin(g/L):", min_value=0, max_value=200, value=100)  
+Hemoglobin = st.number_input("Hemoglobin(g/L):", 
+                            min_value=0.0,  # 改为浮点数
+                            max_value=200.0,  # 改为浮点数
+                            value=100.0,  # 改为浮点数
+                            step=0.1)  # 允许以0.1为步长调整  
 
 # Total_Cholesterol
 Total_Cholesterol= st.number_input("Total Cholesterol(mmol/L):", min_value=0, max_value=300, value=150)

@@ -133,11 +133,11 @@ if submitted:
         st.write(f"**Risk Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
         
         # 添加解释性文本
-        st.info(f"""
-        The model predicts a **{prob_class1:.1%} probability** of frailty. 
-        Using the clinically optimized threshold of **{OPTIMAL_THRESHOLD:.0%}**, 
-        this is classified as **{'high risk' if predicted_class == 1 else 'low risk'}**.
-        """)
+        #st.info(f"""
+        #The model predicts a **{prob_class1:.1%} probability** of frailty. 
+        #Using the clinically optimized threshold of **{OPTIMAL_THRESHOLD:.0%}**, 
+        #this is classified as **{'high risk' if predicted_class == 1 else 'low risk'}**.
+        #""")
 
         # 添加分隔线
         st.markdown("---")

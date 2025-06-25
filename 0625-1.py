@@ -112,42 +112,20 @@ final_features = np.hstack([continuous_features_standardized, categorical_featur
 # 关键修改：确保 final_features 是一个二维数组，并且用 DataFrame 传递给模型
 final_features_df = pd.DataFrame(final_features, columns=["Number_of_Diseases","Age","Hemoglobin","Total_Cholesterol","Neutrophil_to_Lymphocyte_Ratio", "Education_Level","Number_of_Medicine","Vegetable_Intake","Cognitive_Status"])
 
-#if st.button("Predict"): 
-    # Predict class and probabilities    
-    #predicted_proba = model.predict_proba(final_features_df)[0]
-    #prob_class1 = predicted_proba[1]  # 类别1的概率
-
-    # 根据最优阈值判断类别
-    #predicted_class = 1 if prob_class1 >= OPTIMAL_THRESHOLD else 0
-
-# 进行预测
-with st.spinner("Calculating..."):
-    proba = model.predict_proba(final_features_df)[0][1]
-    prediction = 1 if proba >= OPTIMAL_THRESHOLD else 0
-    
-    # 显示结果
-    st.subheader("Prediction Results")
-
 if st.button("Predict"): 
+    
     # Predict class and probabilities    
+    #predicted_class = model.predict(final_features_df)[0]   
     predicted_proba = model.predict_proba(final_features_df)[0]
     prob_class1 = predicted_proba[1]  # 类别1的概率
 
     # 根据最优阈值判断类别
     predicted_class = 1 if prob_class1 >= OPTIMAL_THRESHOLD else 0
 
-    # 使用颜色和进度条增强可视化
-    risk_color = "red" if predicted_class == 1 else "green"
-
     # 显示结果（概率形式更直观）
-    # Display metrics in a single column
-    st.metric("Frailty Probability", f"{proba:.1%}")
-    st.metric("Risk Threshold", f"{OPTIMAL_THRESHOLD:.0%}")
-    st.metric("Risk Category", 
-          f"{'High Risk' if prediction == 1 else 'Low Risk'}", 
-          delta=None, 
-          delta_color="normal",
-          help="Based on optimal clinical threshold")
+    st.write(f"**Frailty Probability:** {prob_class1:.1%}")
+    st.write(f"**Risk Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
+    st.write(f"**Risk Category:** {predicted_class} (1: High risk, 0: Low risk)")
 
     # 添加解释性文本（只在点击后显示）
     st.info(f"""

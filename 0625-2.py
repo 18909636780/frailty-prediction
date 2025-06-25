@@ -172,9 +172,9 @@ if submitted:
     )
     
     # 进行预测
-    with st.spinner("Calculating..."):
-        proba = model.predict_proba(processed_features)[0][1]
-        prediction = 1 if proba >= OPTIMAL_THRESHOLD else 0
+with st.spinner("Calculating..."):
+    proba = model.predict_proba(processed_features)[0][1]
+    prediction = 1 if proba >= OPTIMAL_THRESHOLD else 0
     
     # 显示结果
     st.subheader("Prediction Results")

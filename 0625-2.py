@@ -198,42 +198,42 @@ Using the clinically optimized threshold of **{OPTIMAL_THRESHOLD:.0%}**,
 this is classified as **{'high risk' if prediction == 1 else 'low risk'}**.
 """)
     
-    # SHAP解释
-    st.subheader("Feature Contribution Explanation")
+# SHAP解释
+st.subheader("Feature Contribution Explanation")
     
-    with st.spinner("Generating explanation..."):
-        # 创建SHAP解释器
-        explainer = shap.TreeExplainer(model)
+with st.spinner("Generating explanation..."):
+    # 创建SHAP解释器
+    explainer = shap.TreeExplainer(model)
         
-        # 获取SHAP值（使用原始特征值）
-        shap_values = explainer.shap_values(processed_features)
+    # 获取SHAP值（使用原始特征值）
+    shap_values = explainer.shap_values(processed_features)
         
-        # 确保我们得到正确的SHAP值格式
-        if isinstance(shap_values, list):
-            shap_values = shap_values[1]  # 取正类的SHAP值
+    # 确保我们得到正确的SHAP值格式
+    if isinstance(shap_values, list):
+        shap_values = shap_values[1]  # 取正类的SHAP值
         
-        # 创建瀑布图
-        plt.figure(figsize=(10, 6))
-        shap.plots.waterfall(
-            shap.Explanation(
-                values=shap_values[0],
-                base_values=explainer.expected_value[1],  # 正类的期望值
-                data=features_df.iloc[0],
-                feature_names=FEATURE_ORDER
-            ),
-            max_display=10,
-            show=False
-        )
-        plt.tight_layout()
+    # 创建瀑布图
+    plt.figure(figsize=(10, 6))
+    shap.plots.waterfall(
+        shap.Explanation(
+            values=shap_values[0],
+            base_values=explainer.expected_value[1],  # 正类的期望值
+            data=features_df.iloc[0],
+            feature_names=FEATURE_ORDER
+        ),
+        max_display=10,
+        show=False
+    )
+    plt.tight_layout()
         
-        # 显示图表
-        st.pyplot(plt)
-        plt.clf()  # 清除图形
+    # 显示图表
+    st.pyplot(plt)
+    plt.clf()  # 清除图形
     
-    # 添加解释
-    st.markdown("""
-    **How to interpret the SHAP plot:**
-    - Features pushing the prediction **above** the base value increase frailty risk
-    - Features pushing the prediction **below** the base value decrease frailty risk
-    - The larger the bar, the stronger the feature's influence
-    """)
+ # 添加解释
+st.markdown("""
+**How to interpret the SHAP plot:**
+- Features pushing the prediction **above** the base value increase frailty risk
+- Features pushing the prediction **below** the base value decrease frailty risk
+- The larger the bar, the stronger the feature's influence
+""")

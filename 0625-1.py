@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 
 # Load the model
+OPTIMAL_THRESHOLD = 0.338
 model = joblib.load('CatBoost_frailty0120.pkl')
 scaler = joblib.load('scaler_frailty0120.pkl')
 
@@ -112,7 +113,7 @@ final_features = np.hstack([continuous_features_standardized, categorical_featur
 final_features_df = pd.DataFrame(final_features, columns=["Number_of_Diseases","Age","Hemoglobin","Total_Cholesterol","Neutrophil_to_Lymphocyte_Ratio", "Education_Level","Number_of_Medicine","Vegetable_Intake","Cognitive_Status"])
 
 if st.button("Predict"): 
-    OPTIMAL_THRESHOLD = 0.338
+    #OPTIMAL_THRESHOLD = 0.338
     
     # Predict class and probabilities    
     #predicted_class = model.predict(final_features_df)[0]   

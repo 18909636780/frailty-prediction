@@ -139,6 +139,23 @@ if submitted:
         #this is classified as **{'high risk' if predicted_class == 1 else 'low risk'}**.
         #""")
 
+        # Generate advice based on prediction results  
+        probability = predicted_proba[predicted_class] * 100
+        if predicted_class == 1:        
+             advice = (            
+                    f"According to our model, you have a high risk of frailty. "            
+                    f"The model predicts that your probability of having frailty is {probability:.1f}%. "            
+                    "It's advised to consult with your healthcare provider for further evaluation and possible intervention."        
+              )    
+        else:        
+             advice = (           
+                    f"According to our model, you have a low risk of frailty. "            
+                    f"The model predicts that your probability of not having frailty is {probability:.1f}%. "            
+                    "However, maintaining a healthy lifestyle is important. Please continue regular check-ups with your healthcare provider."        
+              )    
+        st.write(advice)
+
+        
         # 添加分隔线
         st.markdown("---")
         

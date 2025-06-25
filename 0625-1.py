@@ -122,7 +122,7 @@ final_features_df = pd.DataFrame(final_features, columns=["Number_of_Diseases","
 
 # 进行预测
 with st.spinner("Calculating..."):
-    proba = model.predict_proba(processed_features)[0][1]
+    proba = model.predict_proba(final_features_df)[0][1]
     prediction = 1 if proba >= OPTIMAL_THRESHOLD else 0
     
     # 显示结果

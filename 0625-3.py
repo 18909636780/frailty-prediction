@@ -110,6 +110,10 @@ final_features_df = pd.DataFrame(final_features, columns=["Number_of_Diseases","
 
 if submitted: 
     with col1:
+        # 这里可以留空或放一些其他内容
+        pass
+
+    with col2:
         # Predict class and probabilities    
         predicted_proba = model.predict_proba(final_features_df)[0]
         prob_class1 = predicted_proba[1]  # 类别1的概率
@@ -117,11 +121,17 @@ if submitted:
         # 根据最优阈值判断类别
         predicted_class = 1 if prob_class1 >= OPTIMAL_THRESHOLD else 0
 
-        # 显示结果（概率形式更直观）
-        st.write(f"**Frailty Probability:** {prob_class1:.1%}")
+        # 先显示预测结果
+        st.subheader("Prediction Results")
+        
+        # 使用更美观的方式显示结果
+        if predicted_class == 1:
+            st.error(f"Frailty Probability: {prob_class1:.1%} (High Risk)")
+        else:
+            st.success(f"Frailty Probability: {prob_class1:.1%} (Low Risk)")
+        
         st.write(f"**Risk Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
-        st.write(f"**Risk Category:** {predicted_class} (1: High risk, 0: Low risk)")
-
+        
         # 添加解释性文本
         st.info(f"""
         The model predicts a **{prob_class1:.1%} probability** of frailty. 
@@ -129,8 +139,10 @@ if submitted:
         this is classified as **{'high risk' if predicted_class == 1 else 'low risk'}**.
         """)
 
-    with col2:
-        # SHAP 解释
+        # 添加分隔线
+        st.markdown("---")
+        
+        # 再显示SHAP解释图
         st.subheader("SHAP Explanation")
         
         # 创建SHAP解释器

@@ -124,9 +124,14 @@ if st.button("Predict"):
     risk_color = "red" if predicted_class == 1 else "green"
 
     # 显示结果（概率形式更直观）
-    st.write(f"**Frailty Probability:** {prob_class1:.1%}")
-    st.write(f"**Risk Threshold:** {OPTIMAL_THRESHOLD:.0%} (optimized for clinical utility)")
-    st.write(f"**Risk Category:** {predicted_class} (1: High risk, 0: Low risk)")
+    # Display metrics in a single column
+    st.metric("Frailty Probability", f"{proba:.1%}")
+    st.metric("Risk Threshold", f"{OPTIMAL_THRESHOLD:.0%}")
+    st.metric("Risk Category", 
+          f"{'High Risk' if prediction == 1 else 'Low Risk'}", 
+          delta=None, 
+          delta_color="normal",
+          help="Based on optimal clinical threshold")
 
     # 添加解释性文本（只在点击后显示）
     st.info(f"""

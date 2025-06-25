@@ -179,27 +179,24 @@ if submitted:
     # 显示结果
     st.subheader("Prediction Results")
     
-    # 使用颜色和进度条增强可视化
-    risk_color = "red" if prediction == 1 else "green"
-    
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Frailty Probability", f"{proba:.1%}")
-    with col2:
-        st.metric("Risk Threshold", f"{OPTIMAL_THRESHOLD:.0%}")
-    with col3:
-        st.metric("Risk Category", 
-                f"{'High Risk' if prediction == 1 else 'Low Risk'}", 
-                delta=None, 
-                delta_color="normal",
-                help="Based on optimal clinical threshold")
-    
-    # 添加解释性文本
-    st.info(f"""
-    The model predicts a **{proba:.1%} probability** of frailty. 
-    Using the clinically optimized threshold of **{OPTIMAL_THRESHOLD:.0%}**, 
-    this is classified as **{'high risk' if prediction == 1 else 'low risk'}**.
-    """)
+   # 使用颜色和进度条增强可视化
+risk_color = "red" if prediction == 1 else "green"
+
+# Display metrics in a single column
+st.metric("Frailty Probability", f"{proba:.1%}")
+st.metric("Risk Threshold", f"{OPTIMAL_THRESHOLD:.0%}")
+st.metric("Risk Category", 
+          f"{'High Risk' if prediction == 1 else 'Low Risk'}", 
+          delta=None, 
+          delta_color="normal",
+          help="Based on optimal clinical threshold")
+
+# 添加解释性文本
+st.info(f"""
+The model predicts a **{proba:.1%} probability** of frailty. 
+Using the clinically optimized threshold of **{OPTIMAL_THRESHOLD:.0%}**, 
+this is classified as **{'high risk' if prediction == 1 else 'low risk'}**.
+""")
     
     # SHAP解释
     st.subheader("Feature Contribution Explanation")

@@ -128,7 +128,7 @@ if st.button("Predict"):
     st.write(f"**Predicted Class:** {predicted_class} (1: High risk, 0: Low risk)")
 
 # SHAP 解释
-st.subheader("SHAP Waterfall Plot Explanation")
+#st.subheader("SHAP Waterfall Plot Explanation")
 
 # 创建SHAP解释器
 explainer_shap = shap.TreeExplainer(model)
